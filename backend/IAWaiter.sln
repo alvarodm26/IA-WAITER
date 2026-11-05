@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3880DE95-EEB1-4F8C-B22B-98777074A84A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAWaiter.API", "src\IAWaiter.API\IAWaiter.API.csproj", "{C2E34E01-F459-4B11-8696-DC83ECD669B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAWaiter.Domain", "src\IAWaiter.Domain\IAWaiter.Domain.csproj", "{32A46443-EF8B-4F3A-A9F8-8083D9DA11C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAWaiter.Application", "src\IAWaiter.Application\IAWaiter.Application.csproj", "{E6507336-3E52-4F33-AA8F-9A82442CDD75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAWaiter.Infrastructure", "src\IAWaiter.Infrastructure\IAWaiter.Infrastructure.csproj", "{2D53E127-1E40-4ADE-BF34-289BE1C02A18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAWaiter.Contracts", "src\IAWaiter.Contracts\IAWaiter.Contracts.csproj", "{DF6D00D3-EFD1-43B0-B377-6389690279DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2E34E01-F459-4B11-8696-DC83ECD669B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2E34E01-F459-4B11-8696-DC83ECD669B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2E34E01-F459-4B11-8696-DC83ECD669B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2E34E01-F459-4B11-8696-DC83ECD669B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32A46443-EF8B-4F3A-A9F8-8083D9DA11C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32A46443-EF8B-4F3A-A9F8-8083D9DA11C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32A46443-EF8B-4F3A-A9F8-8083D9DA11C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32A46443-EF8B-4F3A-A9F8-8083D9DA11C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6507336-3E52-4F33-AA8F-9A82442CDD75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6507336-3E52-4F33-AA8F-9A82442CDD75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6507336-3E52-4F33-AA8F-9A82442CDD75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6507336-3E52-4F33-AA8F-9A82442CDD75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D53E127-1E40-4ADE-BF34-289BE1C02A18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D53E127-1E40-4ADE-BF34-289BE1C02A18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D53E127-1E40-4ADE-BF34-289BE1C02A18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D53E127-1E40-4ADE-BF34-289BE1C02A18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF6D00D3-EFD1-43B0-B377-6389690279DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF6D00D3-EFD1-43B0-B377-6389690279DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF6D00D3-EFD1-43B0-B377-6389690279DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF6D00D3-EFD1-43B0-B377-6389690279DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2E34E01-F459-4B11-8696-DC83ECD669B6} = {3880DE95-EEB1-4F8C-B22B-98777074A84A}
+		{32A46443-EF8B-4F3A-A9F8-8083D9DA11C6} = {3880DE95-EEB1-4F8C-B22B-98777074A84A}
+		{E6507336-3E52-4F33-AA8F-9A82442CDD75} = {3880DE95-EEB1-4F8C-B22B-98777074A84A}
+		{2D53E127-1E40-4ADE-BF34-289BE1C02A18} = {3880DE95-EEB1-4F8C-B22B-98777074A84A}
+		{DF6D00D3-EFD1-43B0-B377-6389690279DB} = {3880DE95-EEB1-4F8C-B22B-98777074A84A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,16 @@
+node_modules/
+bin/
+obj/
+.vs/
+.idea/
+
+.env
+.env.local
+.env.production
+
+dist/
+build/
+
+coverage/
+
+*.log
