@@ -1,4 +1,7 @@
 using IAWaiter.Infrastructure.Persistence;
+using IAWaiter.Application.Interfaces;
+using IAWaiter.Application.Services;
+using IAWaiter.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Dependency Injection
+builder.Services.AddScoped<IRestaurantRepository, RestaurantRepository>();
+
+builder.Services.AddScoped<RestaurantService>();
+
+// Controllers
+builder.Services.AddControllers();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -23,5 +34,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGet("/", () => "IA-WAITER API RUNNING");
+
+app.MapControllers();
 
 app.Run();
