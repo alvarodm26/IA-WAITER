@@ -93,6 +93,41 @@ namespace IAWaiter.Infrastructure.Migrations
                     b.ToTable("Restaurants");
                 });
 
+            modelBuilder.Entity("IAWaiter.Domain.Entities.Table", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("BranchId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("QrCode")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BranchId");
+
+                    b.ToTable("Tables");
+                });
+
             modelBuilder.Entity("IAWaiter.Domain.Entities.Branch", b =>
                 {
                     b.HasOne("IAWaiter.Domain.Entities.Restaurant", "Restaurant")
@@ -102,6 +137,22 @@ namespace IAWaiter.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Restaurant");
+                });
+
+            modelBuilder.Entity("IAWaiter.Domain.Entities.Table", b =>
+                {
+                    b.HasOne("IAWaiter.Domain.Entities.Branch", "Branch")
+                        .WithMany("Tables")
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
+                });
+
+            modelBuilder.Entity("IAWaiter.Domain.Entities.Branch", b =>
+                {
+                    b.Navigation("Tables");
                 });
 
             modelBuilder.Entity("IAWaiter.Domain.Entities.Restaurant", b =>

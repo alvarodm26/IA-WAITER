@@ -14,6 +14,8 @@ public class AppDbContext : DbContext
 
     public DbSet<Branch> Branches => Set<Branch>();
 
+    public DbSet<Table> Tables => Set<Table>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -40,6 +42,22 @@ public class AppDbContext : DbContext
             entity.HasOne(x => x.Restaurant)
                 .WithMany(x => x.Branches)
                 .HasForeignKey(x => x.RestaurantId);
+        });
+
+        modelBuilder.Entity<Table>(entity =>
+        {
+            entity.HasKey(x => x.Id);
+
+            entity.Property(x => x.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(x => x.QrCode)
+                .HasMaxLength(500);
+
+            entity.HasOne(x => x.Branch)
+                .WithMany(x => x.Tables)
+                .HasForeignKey(x => x.BranchId);
         });
     }
 }

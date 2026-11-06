@@ -15,4 +15,7 @@ public class Branch
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public Restaurant Restaurant { get; set; } = null!;
+
+    public ICollection<Table> Tables { get; set; }
+    = new List<Table>();
 }

@@ -26,6 +26,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IBranchRepository, BranchRepository>();
 builder.Services.AddScoped<BranchService>();
 
+builder.Services.AddScoped<ITableRepository, TableRepository>();
+builder.Services.AddScoped<TableService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
