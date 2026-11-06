@@ -29,6 +29,9 @@ builder.Services.AddScoped<BranchService>();
 builder.Services.AddScoped<ITableRepository, TableRepository>();
 builder.Services.AddScoped<TableService>();
 
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<CategoryService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

@@ -53,6 +53,38 @@ namespace IAWaiter.Infrastructure.Migrations
                     b.ToTable("Branches");
                 });
 
+            modelBuilder.Entity("IAWaiter.Domain.Entities.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("IAWaiter.Domain.Entities.Restaurant", b =>
                 {
                     b.Property<Guid>("Id")
@@ -113,13 +145,11 @@ namespace IAWaiter.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.Property<string>("QrCode")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -132,6 +162,17 @@ namespace IAWaiter.Infrastructure.Migrations
                 {
                     b.HasOne("IAWaiter.Domain.Entities.Restaurant", "Restaurant")
                         .WithMany("Branches")
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
+                });
+
+            modelBuilder.Entity("IAWaiter.Domain.Entities.Category", b =>
+                {
+                    b.HasOne("IAWaiter.Domain.Entities.Restaurant", "Restaurant")
+                        .WithMany("Categories")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -158,6 +199,8 @@ namespace IAWaiter.Infrastructure.Migrations
             modelBuilder.Entity("IAWaiter.Domain.Entities.Restaurant", b =>
                 {
                     b.Navigation("Branches");
+
+                    b.Navigation("Categories");
                 });
 #pragma warning restore 612, 618
         }

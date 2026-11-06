@@ -19,4 +19,7 @@ public class Restaurant
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public ICollection<Branch> Branches { get; set; } = new List<Branch>();
+
+    public ICollection<Category> Categories { get; set; }
+    = new List<Category>();
 }
