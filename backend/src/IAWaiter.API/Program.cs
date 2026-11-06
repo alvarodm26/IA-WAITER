@@ -23,6 +23,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IBranchRepository, BranchRepository>();
+builder.Services.AddScoped<BranchService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
