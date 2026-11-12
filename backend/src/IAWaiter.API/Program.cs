@@ -32,6 +32,9 @@ builder.Services.AddScoped<TableService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<CategoryService>();
 
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ProductService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
