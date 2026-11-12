@@ -20,6 +20,10 @@ public class AppDbContext : DbContext
 
     public DbSet<Product> Products => Set<Product>();
 
+    public DbSet<Order> Orders => Set<Order>();
+
+    public DbSet<OrderItem> OrderItems => Set<OrderItem>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -100,6 +104,42 @@ public class AppDbContext : DbContext
             entity.HasOne(x => x.Category)
                 .WithMany()
                 .HasForeignKey(x => x.CategoryId);
+        });
+
+        modelBuilder.Entity<Order>(entity =>
+        {
+            entity.HasKey(x => x.Id);
+
+            entity.Property(x => x.OrderNumber)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(x => x.Status)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(x => x.Total)
+                .HasColumnType("numeric(10,2)");
+
+            entity.HasOne(x => x.Table)
+                .WithMany()
+                .HasForeignKey(x => x.TableId);
+        });
+
+        modelBuilder.Entity<OrderItem>(entity =>
+        {
+            entity.HasKey(x => x.Id);
+
+            entity.Property(x => x.UnitPrice)
+                .HasColumnType("numeric(10,2)");
+
+            entity.HasOne(x => x.Order)
+                .WithMany(x => x.Items)
+                .HasForeignKey(x => x.OrderId);
+
+            entity.HasOne(x => x.Product)
+                .WithMany()
+                .HasForeignKey(x => x.ProductId);
         });
     }
 }
