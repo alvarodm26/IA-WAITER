@@ -7,4 +7,6 @@ public interface IOrderRepository
     Task<IReadOnlyList<Order>> GetAllAsync();
 
     Task AddAsync(Order order);
+
+    Task UpdateAsync(Order order);
 }

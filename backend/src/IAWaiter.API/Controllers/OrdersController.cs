@@ -27,4 +27,22 @@ public class OrdersController : ControllerBase
     {
         return Ok(await _service.CreateAsync(request));
     }
+
+    [HttpPut("{id}/preparing")]
+    public async Task<IActionResult> Preparing(Guid id)
+    {
+        var order =
+            await _service.MarkAsPreparing(id);
+
+        return Ok(order);
+    }
+
+    [HttpPut("{id}/ready")]
+    public async Task<IActionResult> Ready(Guid id)
+    {
+        var order =
+            await _service.MarkAsReady(id);
+
+        return Ok(order);
+    }
 }

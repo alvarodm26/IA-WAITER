@@ -8,9 +8,14 @@ public class OrderService
 {
     private readonly IOrderRepository _repository;
 
-    public OrderService(IOrderRepository repository)
+    private readonly IProductRepository _productRepository;
+
+    public OrderService(
+        IOrderRepository repository,
+        IProductRepository productRepository)
     {
         _repository = repository;
+        _productRepository = productRepository;
     }
 
     public async Task<Order> CreateAsync(
@@ -26,16 +31,31 @@ public class OrderService
             CreatedAt = DateTime.UtcNow
         };
 
+        decimal total = 0;
+
         foreach (var item in request.Items)
         {
+            var product = await _productRepository
+                .GetByIdAsync(item.ProductId);
+
+            if (product == null)
+            {
+                throw new Exception(
+                    $"Product {item.ProductId} not found");
+            }
+
             order.Items.Add(new OrderItem
             {
                 Id = Guid.NewGuid(),
                 ProductId = item.ProductId,
                 Quantity = item.Quantity,
-                UnitPrice = 0
+                UnitPrice = product.Price
             });
+
+            total += product.Price * item.Quantity;
         }
+
+        order.Total = total;
 
         await _repository.AddAsync(order);
 
@@ -45,5 +65,35 @@ public class OrderService
     public async Task<IReadOnlyList<Order>> GetAllAsync()
     {
         return await _repository.GetAllAsync();
+    }
+
+    public async Task<Order?> MarkAsPreparing(Guid id)
+    {
+        var order = (await _repository.GetAllAsync())
+            .FirstOrDefault(x => x.Id == id);
+
+        if (order == null)
+            return null;
+
+        order.Status = "Preparing";
+
+        await _repository.UpdateAsync(order);
+
+        return order;
+    }
+
+    public async Task<Order?> MarkAsReady(Guid id)
+    {
+        var order = (await _repository.GetAllAsync())
+            .FirstOrDefault(x => x.Id == id);
+
+        if (order == null)
+            return null;
+
+        order.Status = "Ready";
+
+        await _repository.UpdateAsync(order);
+
+        return order;
     }
 }
