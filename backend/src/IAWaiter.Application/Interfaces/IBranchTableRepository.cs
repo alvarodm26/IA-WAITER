@@ -9,4 +9,5 @@ public interface ITableRepository
     Task<IReadOnlyList<Table>> GetAllAsync();
 
     Task AddAsync(Table table);
+    Task UpdateAsync(Table table);
 }

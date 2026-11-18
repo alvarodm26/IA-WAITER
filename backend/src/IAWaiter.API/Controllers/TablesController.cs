@@ -31,4 +31,13 @@ public class TablesController : ControllerBase
 
         return Ok(table);
     }
+
+    [HttpPut("{id}/generate-qr")]
+    public async Task<IActionResult> GenerateQr(Guid id)
+    {
+        var table =
+            await _service.GenerateQrAsync(id);
+
+        return Ok(table);
+    }
 }

@@ -31,4 +31,11 @@ public class TableRepository : ITableRepository
 
         await _context.SaveChangesAsync();
     }
+
+    public async Task UpdateAsync(Table table)
+    {
+        _context.Tables.Update(table);
+
+        await _context.SaveChangesAsync();
+    }
 }

@@ -96,4 +96,49 @@ public class OrderService
 
         return order;
     }
+
+    public async Task<Order?> MarkAsDelivered(Guid id)
+    {
+        var order = (await _repository.GetAllAsync())
+            .FirstOrDefault(x => x.Id == id);
+
+        if (order == null)
+            return null;
+
+        order.Status = "Delivered";
+
+        await _repository.UpdateAsync(order);
+
+        return order;
+    }
+
+    public async Task<Order?> MarkAsPaid(Guid id)
+    {
+        var order = (await _repository.GetAllAsync())
+            .FirstOrDefault(x => x.Id == id);
+
+        if (order == null)
+            return null;
+
+        order.Status = "Paid";
+
+        await _repository.UpdateAsync(order);
+
+        return order;
+    }
+
+    public async Task<Order?> MarkAsCancelled(Guid id)
+    {
+        var order = (await _repository.GetAllAsync())
+            .FirstOrDefault(x => x.Id == id);
+
+        if (order == null)
+            return null;
+
+        order.Status = "Cancelled";
+
+        await _repository.UpdateAsync(order);
+
+        return order;
+    }
 }

@@ -35,4 +35,20 @@ public class TableService
     {
         return await _repository.GetAllAsync();
     }
+
+    public async Task<Table?> GenerateQrAsync(Guid id)
+    {
+        var table = (await _repository.GetAllAsync())
+            .FirstOrDefault(x => x.Id == id);
+
+        if (table == null)
+            return null;
+
+        table.QrCode =
+            $"https://iawaiter.local/menu/{table.Id}";
+
+        await _repository.UpdateAsync(table);
+
+        return table;
+    }
 }
